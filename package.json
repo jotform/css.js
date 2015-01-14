@@ -1,0 +1,24 @@
+{
+  "name": "css.js",
+  "version": "1.0.0",
+  "description": "css.js ======",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://cettox@github.com/cettox/css.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cettox/css.js/issues"
+  },
+  "homepage": "https://github.com/cettox/css.js"
+}
