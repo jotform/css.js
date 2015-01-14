@@ -1,7 +1,7 @@
 css.js
 ======
 
-A lightweight, battle tested, fast, css parser
+A lightweight, battle tested, fast, css parser in JavaScript
 
 
 Development
@@ -9,6 +9,9 @@ Development
 
 Just execute following commands :
 
-npm install
-bower install
-grunt
+```
+	npm install
+	bower install
+	grunt
+```
+
