@@ -4,6 +4,11 @@ css.js
 A lightweight, battle tested, fast, css parser in JavaScript
 
 
+Why?
+=====
+Please read the story behind it [here]
+[here]: https://medium.com/jotform-form-builder/writing-a-css-parser-in-javascript-3ecaa1719a43
+
 Demo
 ======
 
