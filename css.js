@@ -9,7 +9,7 @@
 
     this.cssRegex = new RegExp('([\\s\\S]*?){([\\s\\S]*?)}', 'gi');
     this.cssMediaQueryRegex = '((@media [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
-    this.cssKeyframeRegex = '((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
+    this.cssKeyframeRegex = '((@(-webkit-)?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
     this.combinedCSSRegex = '((\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})'; //to match css & media queries together
     this.cssCommentsRegex = '(\\/\\*[\\s\\S]*?\\*\\/)';
     this.cssImportStatementRegex = new RegExp('@import .*?;', 'gi');
@@ -289,7 +289,7 @@
     returns the changed(new,removed,updated) values on css1 parameter, on same structure
 
     if two css objects are the same, then returns false
-      
+
       if a css directive exists in css1 and     css2, and its value is different, it is included in diff
       if a css directive exists in css1 and not css2, it is then included in diff
       if a css directive exists in css2 but not css1, then it is deleted in css1, it would be included in diff but will be marked as type='DELETED'
@@ -649,7 +649,7 @@
 
     var __el = document.getElementById( id );
     if(__el){
-      __el.parentNode.removeChild( __el );  
+      __el.parentNode.removeChild( __el );
     }
 
     var head = document.head || document.getElementsByTagName('head')[0],
