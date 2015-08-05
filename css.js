@@ -10,7 +10,7 @@
     this.cssRegex = new RegExp('([\\s\\S]*?){([\\s\\S]*?)}', 'gi');
     this.cssMediaQueryRegex = '((@media [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
     this.cssKeyframeRegex = '((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
-    this.combinedCSSRegex = '((\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})'; //to match css & media queries together
+    this.combinedCSSRegex = '((\\s*?@media[\\s\\S]*?)\\{([\\s\\S]*?)\\}(?!.*\\})\\s*?})|(([\\s\\S]*?)\\{([\\s\\S]*?)\\}(?!.*\\}))'; //to match css & media queries together
     this.cssCommentsRegex = '(\\/\\*[\\s\\S]*?\\*\\/)';
     this.cssImportStatementRegex = new RegExp('@import .*?;', 'gi');
   };
