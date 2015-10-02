@@ -35,6 +35,8 @@ And to execute unit tests and produce css.min.js, execute
 How To Use
 ======
 
+On the browser
+------
 
 Simply parse css string, and log the output
 
@@ -52,4 +54,18 @@ Simply parse css string, and log the output
 ```
 
 
+On the server
+------
 
+
+```
+	var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
+	//require parser constructor
+	var cssjs = require("./css.js");
+	//initialize parser object
+	var parser = new cssjs.cssjs();
+	//parse css string
+	var parsed = parser.parseCSS(cssString);
+
+	console.log(parsed);
+```

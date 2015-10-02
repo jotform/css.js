@@ -1,6 +1,6 @@
 /* jshint unused:false */
 /* global base64_decode, CSSWizardView, window, console, jQuery */
-(function($) {
+(function(global) {
   'use strict';
   var fi = function() {
 
@@ -667,6 +667,6 @@
     }
   };
 
-  window.cssjs = fi;
+  global.cssjs = fi;
 
-})();
+})(this);
