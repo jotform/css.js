@@ -103,6 +103,9 @@
         selector = selector.replace(commentsRegex, '').trim();
       }
 
+      // Never have more than a single line break in a row
+      selector = selector.replace(/\n+/, "\n");
+
       //determine the type
       if (selector.indexOf('@media') !== -1) {
         //we have a media query
