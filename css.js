@@ -174,7 +174,7 @@
         });
       } else {
         //if there is no ':', but what if it was mis splitted value which starts with base64
-        if (line.trim().substr(0, 7) == 'base64,') { //hack :)
+        if (line.trim().substr(0, 7) === 'base64,') { //hack :)
           ret[ret.length - 1].value += line.trim();
         } else {
           //add rule, even if it is defective
@@ -201,7 +201,7 @@
     }
     var ret = false;
     for (var i = 0; i < rules.length; i++) {
-      if (rules[i].directive == directive) {
+      if (rules[i].directive === directive) {
         ret = rules[i];
         if (value === rules[i].value) {
           break;
@@ -419,7 +419,7 @@
           var oldRule = this.findCorrespondingRule(cssObject.rules, rule.directive);
           if (oldRule === false) {
             cssObject.rules.push(rule);
-          } else if (rule.type == 'DELETED') {
+          } else if (rule.type === 'DELETED') {
             oldRule.type = 'DELETED';
           } else {
             //rule found just update value
@@ -465,7 +465,7 @@
     }
     //append imports
     for (var i = 0; i < cssBase.length; i++) {
-      if (cssBase[i].type == 'imports') {
+      if (cssBase[i].type === 'imports') {
         ret += cssBase[i].styles + '\n\n';
       }
     }
@@ -479,7 +479,7 @@
         comments = tmp.comments + '\n';
       }
 
-      if (tmp.type == 'media') { //also put media queries to output
+      if (tmp.type === 'media') { //also put media queries to output
         ret += comments + tmp.selector + '{\n';
         ret += this.getCSSForEditor(tmp.subStyles, depth + 1);
         ret += '}\n\n';
@@ -492,7 +492,7 @@
 
     //append keyFrames
     for (i = 0; i < cssBase.length; i++) {
-      if (cssBase[i].type == 'keyframes') {
+      if (cssBase[i].type === 'keyframes') {
         ret += cssBase[i].styles + '\n\n';
       }
     }
@@ -503,7 +503,7 @@
   fi.prototype.getImports = function(cssObjectArray) {
     var imps = [];
     for (var i = 0; i < cssObjectArray.length; i++) {
-      if (cssObjectArray[i].type == 'imports') {
+      if (cssObjectArray[i].type === 'imports') {
         imps.push(cssObjectArray[i].styles);
       }
     }
@@ -635,7 +635,7 @@
       css = this.applyNamespacing(css);
     }
 
-    if (typeof css != 'string') {
+    if (typeof css !== 'string') {
       css = this.getCSSForEditor(css);
     }
     //apply formatting for css
