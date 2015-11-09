@@ -116,7 +116,7 @@
         }
         css.push(cssObject);
       } else {
-        //we have standart css
+        //we have standard css
         var rules = this.parseRules(arr[6]);
         var style = {
           selector: selector,
@@ -368,7 +368,7 @@
     }
     for (i = 0; i < cssObjectArray.length; i++) {
       var cobj = cssObjectArray[i];
-      if (cobj.type === 'media' ||  (cobj.type === 'keyframes')) {
+      if (cobj.type === 'media' || (cobj.type === 'keyframes')) {
         continue;
       }
       cobj.rules = this.compactRules(cobj.rules);
@@ -377,7 +377,7 @@
 
   /*
     inserts new css objects into a bigger css object
-    with same selectors groupped together
+    with same selectors grouped together
 
     @param cssObjectArray, array of bigger css object to be pushed into
     @param minimalObject, single css object
@@ -439,7 +439,7 @@
 
     @param rules, array of rules
 
-    @returns rules array, compacted by deleting all unneccessary rules
+    @returns rules array, compacted by deleting all unnecessary rules
   */
   fi.prototype.compactRules = function(rules) {
     var newRules = [];
@@ -520,7 +520,7 @@
         continue;
       }
       if (rules[i].defective === undefined) {
-        ret += this.getSpaces(depth) + rules[i].directive + ' : ' + rules[i].value + ';\n';
+        ret += this.getSpaces(depth) + rules[i].directive + ': ' + rules[i].value + ';\n';
       } else {
         ret += this.getSpaces(depth) + rules[i].value + ';\n';
       }
@@ -630,7 +630,7 @@
       format = false;
     }
 
-    if (this.testMode === false && format!=='nonamespace') {
+    if (this.testMode === false && format !== 'nonamespace') {
       //apply namespacing classes
       css = this.applyNamespacing(css);
     }
@@ -647,9 +647,9 @@
       return this.testMode('create style #' + id, css); //if test mode, just pass result to callback
     }
 
-    var __el = document.getElementById( id );
-    if(__el){
-      __el.parentNode.removeChild( __el );  
+    var __el = document.getElementById(id);
+    if (__el) {
+      __el.parentNode.removeChild(__el);
     }
 
     var head = document.head || document.getElementsByTagName('head')[0],
