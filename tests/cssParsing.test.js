@@ -89,6 +89,10 @@ QUnit.test('Advanced CSS Parsing(support for media queries)', function(assert) {
     expected = $.parseJSON(testData.advCSS5.output);
     parsed = fullInspector.parseCSS(testData.advCSS5.input);
     assert.deepEqual(parsed, expected, 'Simple @font-face with multiline value containing css');
+
+    expected = $.parseJSON(testData.advCSS6.output);
+    parsed = fullInspector.parseCSS(testData.advCSS6.input);
+    assert.deepEqual(parsed, expected, 'Media query with a comment above it.');
 });
 
 /*

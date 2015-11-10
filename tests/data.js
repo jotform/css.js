@@ -42,6 +42,10 @@ var testData = {
     advCSS5: {
         input: '@font-face {\nfont-family: myFirstFont;\nsrc: url(sansation_light.woff) format(woff)\nurl(sansation_light.otf) format(opentype);\n}',
         output: '[{"selector":"@font-face","type":"font-face","rules":[{"directive":"font-family","value":"myFirstFont"},{"directive":"src","value":"url(sansation_light.woff) format(woff)\\nurl(sansation_light.otf) format(opentype)" }] }]'
+    },
+    advCSS6: {
+        input: '/*--------------------------------------------------------------\nA big comment\n--------------------------------------------------------------*/@media screen and (min-width: 780px) {\n  .supernova {\n    background-color: #fafafa;\n  }\n}',
+        output: '[{"comments": "/*--------------------------------------------------------------\\nA big comment\\n--------------------------------------------------------------*/","selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]'
     }
 };
 
