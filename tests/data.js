@@ -74,6 +74,11 @@ var cssIntelligentPushData = {
         styles: '[{"selector":".first","rules":[{"directive":"color","value":"blue"},{"directive":"margin","value":"10px"}]},{"selector":".second","rules":[{"directive":"color","value":"red"},{"directive":"margin","value":"20px"}]}]',
         newStyle: '{"selector":".first","rules":[{"directive":"padding","value":"5px"}]}',
         result: '[{"selector":".first","rules":[{"directive":"color","value":"blue"},{"directive":"margin","value":"10px"},{"directive":"padding","value":"5px"}]},{"selector":".second","rules":[{"directive":"color","value":"red"},{"directive":"margin","value":"20px"}]}]'
+    },
+    pushBasic3: {
+        styles: '[{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]',
+        newStyle: '{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#bada55"}]}]}',
+        result: '[{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]},{"selector":".supernova","rules":[{"directive":"background-color","value":"#bada55"}]}]}]'
     }
 };
 
