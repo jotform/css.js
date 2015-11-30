@@ -42,6 +42,10 @@ var testData = {
     advCSS5: {
         input: '@font-face {\nfont-family: myFirstFont;\nsrc: url(sansation_light.woff) format(woff)\nurl(sansation_light.otf) format(opentype);\n}',
         output: '[{"selector":"@font-face","type":"font-face","rules":[{"directive":"font-family","value":"myFirstFont"},{"directive":"src","value":"url(sansation_light.woff) format(woff)\\nurl(sansation_light.otf) format(opentype)" }] }]'
+    },
+    advCSS6: {
+        input: '/*--------------------------------------------------------------\nA big comment\n--------------------------------------------------------------*/@media screen and (min-width: 780px) {\n  .supernova {\n    background-color: #fafafa;\n  }\n}',
+        output: '[{"comments": "/*--------------------------------------------------------------\\nA big comment\\n--------------------------------------------------------------*/","selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]'
     }
 };
 
@@ -70,6 +74,11 @@ var cssIntelligentPushData = {
         styles: '[{"selector":".first","rules":[{"directive":"color","value":"blue"},{"directive":"margin","value":"10px"}]},{"selector":".second","rules":[{"directive":"color","value":"red"},{"directive":"margin","value":"20px"}]}]',
         newStyle: '{"selector":".first","rules":[{"directive":"padding","value":"5px"}]}',
         result: '[{"selector":".first","rules":[{"directive":"color","value":"blue"},{"directive":"margin","value":"10px"},{"directive":"padding","value":"5px"}]},{"selector":".second","rules":[{"directive":"color","value":"red"},{"directive":"margin","value":"20px"}]}]'
+    },
+    pushBasic3: {
+        styles: '[{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]',
+        newStyle: '{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#bada55"}]}]}',
+        result: '[{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]},{"selector":".supernova","rules":[{"directive":"background-color","value":"#bada55"}]}]}]'
     }
 };
 

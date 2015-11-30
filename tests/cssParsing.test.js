@@ -89,6 +89,10 @@ QUnit.test('Advanced CSS Parsing(support for media queries)', function(assert) {
     expected = $.parseJSON(testData.advCSS5.output);
     parsed = fullInspector.parseCSS(testData.advCSS5.input);
     assert.deepEqual(parsed, expected, 'Simple @font-face with multiline value containing css');
+
+    expected = $.parseJSON(testData.advCSS6.output);
+    parsed = fullInspector.parseCSS(testData.advCSS6.input);
+    assert.deepEqual(parsed, expected, 'Media query with a comment above it.');
 });
 
 /*
@@ -146,12 +150,20 @@ QUnit.test('Intelligent CSS Push Tests', function(assert) {
     var styles = $.parseJSON(cssIntelligentPushData.pushBasic.styles);
     var newStyle = $.parseJSON(cssIntelligentPushData.pushBasic.newStyle);
     fullInspector.intelligentCSSPush(styles, newStyle);
-    var expected = $.parseJSON(cssIntelligentPushData.pushBasic.result)
+    var expected = $.parseJSON(cssIntelligentPushData.pushBasic.result);
     assert.deepEqual(styles, expected, 'Push CSS into empty CSS object');
 
     styles = $.parseJSON(cssIntelligentPushData.pushBasic2.styles);
     newStyle = $.parseJSON(cssIntelligentPushData.pushBasic2.newStyle);
     fullInspector.intelligentCSSPush(styles, newStyle);
-    expected = $.parseJSON(cssIntelligentPushData.pushBasic2.result)
+    expected = $.parseJSON(cssIntelligentPushData.pushBasic2.result);
     assert.deepEqual(styles, expected, 'Push CSS containing a new css directive to an existing CSS object');
+
+    styles = $.parseJSON(cssIntelligentPushData.pushBasic3.styles);
+    newStyle = $.parseJSON(cssIntelligentPushData.pushBasic3.newStyle);
+    fullInspector.intelligentCSSPush(styles, newStyle);
+    expected = $.parseJSON(cssIntelligentPushData.pushBasic3.result);
+    assert.deepEqual(styles, expected, 'Push media query CSS containing a new css directive to an existing media query CSS object');
 });
+
+QUnit.start();
