@@ -1,4 +1,4 @@
-css.js
+css.js [![Build Status](https://travis-ci.org/jotform/css.js.svg)](https://travis-ci.org/jotform/css.js)
 ======
 
 A lightweight, battle tested, fast, css parser in JavaScript
