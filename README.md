@@ -12,7 +12,7 @@ Please read the story behind it [here]
 Demo
 ======
 
-Check it out [plunker demo]
+Check out [plunker demo]
 
 [plunker demo]: http://embed.plnkr.co/qMRJpJ92BHNrJuCnbRFB/preview
 
@@ -23,7 +23,6 @@ Following commands will prepare development enviroment by installing dependencie
 
 ```
 	npm install
-	bower install
 ```
 
 And to execute unit tests and produce css.min.js, execute
