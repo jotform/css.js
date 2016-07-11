@@ -152,6 +152,33 @@ var unitTest = {
                     }
                 ]
     },
+    findBySelector2 : {
+        input1 :[
+                    {
+                        selector : '@imports',
+                        styles: '@import url(https://fonts.googleapis.com/css?family=Roboto);',
+                        type: 'imports',
+                    },
+                    {
+                        selector : '@imports',
+                        styles: '@import url(https://fonts.googleapis.com/css?family=Droid+Serif);',
+                        type: 'imports',
+                    }
+                ],
+        input2 : '@imports',
+        output :[
+                    {
+                        selector : '@imports',
+                        styles: '@import url(https://fonts.googleapis.com/css?family=Roboto);',
+                        type: 'imports',
+                    },
+                    {
+                        selector : '@imports',
+                        styles: '@import url(https://fonts.googleapis.com/css?family=Droid+Serif);',
+                        type: 'imports',
+                    }
+                ]
+    },
     cssDiff1 : {
         input1 : {
             selector : '.someSelector',

@@ -13,6 +13,10 @@ QUnit.test('FullInspector Unit Tests', function(assert) {
     result = fullInspector.findBySelector(unitTest.findBySelector.input1, unitTest.findBySelector.input2);
     assert.deepEqual(result, expected, 'fi.prototype.findBySelector : find css object by selector string'); //assert 3
 
+    expected = unitTest.findBySelector2.output;
+    result = fullInspector.findBySelector(unitTest.findBySelector2.input1, unitTest.findBySelector2.input2);
+    assert.deepEqual(result, expected, 'fi.prototype.findBySelector : should not compress @imports'); //assert 3
+
     expected = unitTest.cssDiff1.output;
     result = fullInspector.cssDiff(unitTest.cssDiff1.input1, unitTest.cssDiff1.input2);
     assert.deepEqual(result, expected, 'fi.prototype.cssDiff : css1\'s contains an updated value' ); //assert 4
