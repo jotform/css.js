@@ -39,7 +39,7 @@ On the browser
 
 Simply parse css string, and log the output
 
-```
+```html
 	<script type="text/javascript" src="css.min.js"></script>
 	<script type="text/javascript">
 		var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
@@ -57,7 +57,7 @@ On the server
 ------
 
 
-```
+```js
 	var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
 	//require parser constructor
 	var cssjs = require("./css.js");
