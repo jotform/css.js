@@ -45,56 +45,56 @@ QUnit.test('FullInspector Unit Tests', function(assert) {
 });
 
 QUnit.test('Basic CSS parsing', function(assert) {
-    var expected = $.parseJSON(testData.veryBasicCSS.output);
+    var expected = JSON.parse(testData.veryBasicCSS.output);
     var parsed = fullInspector.parseCSS(testData.veryBasicCSS.input);
     console.log(expected, parsed);
     assert.deepEqual(parsed, expected, 'The simplest css possible, compressed'); //assert 1
 
-    expected = $.parseJSON(testData.basicCSS.output);
+    expected = JSON.parse(testData.basicCSS.output);
     parsed = fullInspector.parseCSS(testData.basicCSS.input);
     assert.deepEqual(parsed, expected, 'The simplest css possible, uncompressed'); //assert 2
 
-    expected = $.parseJSON(testData.basicCSS2.output); //adding comments should not change output
+    expected = JSON.parse(testData.basicCSS2.output); //adding comments should not change output
     parsed = fullInspector.parseCSS(testData.basicCSS2.input);
     assert.deepEqual(parsed, expected, 'Simple css with comments'); //assert 3
 
 
-    expected = $.parseJSON(testData.basicCSS3.output); //a More complex CSS example
+    expected = JSON.parse(testData.basicCSS3.output); //a More complex CSS example
     parsed = fullInspector.parseCSS(testData.basicCSS3.input);
     assert.deepEqual(parsed, expected, 'A More complex CSS example'); //assert 4
 
-    expected = $.parseJSON(testData.basicCSS4.output); //a More complex CSS example
+    expected = JSON.parse(testData.basicCSS4.output); //a More complex CSS example
     parsed = fullInspector.parseCSS(testData.basicCSS4.input);
     assert.deepEqual(parsed, expected, 'Simple css with multi-line value'); //assert 5
 
-    expected = $.parseJSON(testData.basicCSS5.output); //simple css with margin value is "*0"
+    expected = JSON.parse(testData.basicCSS5.output); //simple css with margin value is "*0"
     parsed = fullInspector.parseCSS(testData.basicCSS5.input);
     assert.deepEqual(parsed, expected, 'simple css with margin value is "*0'); //assert 5
 });
 QUnit.test('Advanced CSS Parsing(support for media queries)', function(assert) {
-    var expected = $.parseJSON(testData.advCSS.output);
+    var expected = JSON.parse(testData.advCSS.output);
     var parsed = fullInspector.parseCSS(testData.advCSS.input);
     assert.deepEqual(parsed, expected, 'Basic CSS including only 1 media query'); //assert 1 for media queries
 
 
-    expected = $.parseJSON(testData.advCSS2.output);
+    expected = JSON.parse(testData.advCSS2.output);
     parsed = fullInspector.parseCSS(testData.advCSS2.input);
     assert.deepEqual(parsed, expected, '2 media queries'); //assert 2 for media queries
 
     //test a very complex css & media query mixup
-    expected = $.parseJSON(testData.advCSS3.output);
+    expected = JSON.parse(testData.advCSS3.output);
     parsed = fullInspector.parseCSS(testData.advCSS3.input);
     assert.deepEqual(parsed, expected, 'Complex css & media query mixup'); //assert 2 for media queries
 
-    expected = $.parseJSON(testData.advCSS4.output);
+    expected = JSON.parse(testData.advCSS4.output);
     parsed = fullInspector.parseCSS(testData.advCSS4.input);
     assert.deepEqual(parsed, expected, 'Simple @font-face containing css');
 
-    expected = $.parseJSON(testData.advCSS5.output);
+    expected = JSON.parse(testData.advCSS5.output);
     parsed = fullInspector.parseCSS(testData.advCSS5.input);
     assert.deepEqual(parsed, expected, 'Simple @font-face with multiline value containing css');
 
-    expected = $.parseJSON(testData.advCSS6.output);
+    expected = JSON.parse(testData.advCSS6.output);
     parsed = fullInspector.parseCSS(testData.advCSS6.input);
     assert.deepEqual(parsed, expected, 'Media query with a comment above it.');
 });
@@ -117,16 +117,16 @@ QUnit.test('CSS parse&toString equality tests', function(assert) {
 	Test Cases for CSS diff tool
 */
 QUnit.test('CSS Diff Tests', function(assert) {
-    var css1 = $.parseJSON(diffTestData.diffBasic.css1);
-    var css2 = $.parseJSON(diffTestData.diffBasic.css2);
+    var css1 = JSON.parse(diffTestData.diffBasic.css1);
+    var css2 = JSON.parse(diffTestData.diffBasic.css2);
     var diff = fullInspector.cssDiff(css1, css2);
-    var expected = $.parseJSON(diffTestData.diffBasic.diff)
+    var expected = JSON.parse(diffTestData.diffBasic.diff)
     assert.deepEqual(diff, expected, 'Basic cssDiff');
 
-    css1 = $.parseJSON(diffTestData.diffBasic2.css1);
-    css2 = $.parseJSON(diffTestData.diffBasic2.css2);
+    css1 = JSON.parse(diffTestData.diffBasic2.css1);
+    css2 = JSON.parse(diffTestData.diffBasic2.css2);
     diff = fullInspector.cssDiff(css1, css2);
-    expected = $.parseJSON(diffTestData.diffBasic2.diff)
+    expected = JSON.parse(diffTestData.diffBasic2.diff)
     assert.deepEqual(diff, expected, 'diff of 2 same css should return false');
 });
 
@@ -138,9 +138,9 @@ QUnit.test('CSS Diff Bug tests', function(assert) {
     for(var i = 0; i < cssDiffFailedValues.length; i++){
         var testData = cssDiffFailedValues[i];
         console.log('testData ',testData);
-        var css1 = $.parseJSON(testData.css1);
+        var css1 = JSON.parse(testData.css1);
         console.log('css 1 ',css1);
-        var css2 = $.parseJSON(testData.css2);
+        var css2 = JSON.parse(testData.css2);
         var diff = fullInspector.cssDiff(css1, css2);
         var expected = testData.output;
         assert.deepEqual(diff, expected, 'css diff bug test '+(i+1));
@@ -151,22 +151,22 @@ QUnit.test('CSS Diff Bug tests', function(assert) {
 	Test Cases for Intelligent CSS Push
 */
 QUnit.test('Intelligent CSS Push Tests', function(assert) {
-    var styles = $.parseJSON(cssIntelligentPushData.pushBasic.styles);
-    var newStyle = $.parseJSON(cssIntelligentPushData.pushBasic.newStyle);
+    var styles = JSON.parse(cssIntelligentPushData.pushBasic.styles);
+    var newStyle = JSON.parse(cssIntelligentPushData.pushBasic.newStyle);
     fullInspector.intelligentCSSPush(styles, newStyle);
-    var expected = $.parseJSON(cssIntelligentPushData.pushBasic.result);
+    var expected = JSON.parse(cssIntelligentPushData.pushBasic.result);
     assert.deepEqual(styles, expected, 'Push CSS into empty CSS object');
 
-    styles = $.parseJSON(cssIntelligentPushData.pushBasic2.styles);
-    newStyle = $.parseJSON(cssIntelligentPushData.pushBasic2.newStyle);
+    styles = JSON.parse(cssIntelligentPushData.pushBasic2.styles);
+    newStyle = JSON.parse(cssIntelligentPushData.pushBasic2.newStyle);
     fullInspector.intelligentCSSPush(styles, newStyle);
-    expected = $.parseJSON(cssIntelligentPushData.pushBasic2.result);
+    expected = JSON.parse(cssIntelligentPushData.pushBasic2.result);
     assert.deepEqual(styles, expected, 'Push CSS containing a new css directive to an existing CSS object');
 
-    styles = $.parseJSON(cssIntelligentPushData.pushBasic3.styles);
-    newStyle = $.parseJSON(cssIntelligentPushData.pushBasic3.newStyle);
+    styles = JSON.parse(cssIntelligentPushData.pushBasic3.styles);
+    newStyle = JSON.parse(cssIntelligentPushData.pushBasic3.newStyle);
     fullInspector.intelligentCSSPush(styles, newStyle);
-    expected = $.parseJSON(cssIntelligentPushData.pushBasic3.result);
+    expected = JSON.parse(cssIntelligentPushData.pushBasic3.result);
     assert.deepEqual(styles, expected, 'Push media query CSS containing a new css directive to an existing media query CSS object');
 });
 
