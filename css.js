@@ -1,5 +1,5 @@
 /* jshint unused:false */
-/* global base64_decode, CSSWizardView, window, console, jQuery */
+/* global window, console */
 (function(global) {
   'use strict';
   var fi = function() {
@@ -398,14 +398,14 @@
 
     if (reverse === false) {
       for (var i = 0; i < cssObjectArray.length; i++) {
-        if (cssObjectArray[i].selector === minimalObject.selector) {
+        if (cssObjectArray[i].selector === pushSelector) {
           cssObject = cssObjectArray[i];
           break;
         }
       }
     } else {
       for (var j = cssObjectArray.length - 1; j > -1; j--) {
-        if (cssObjectArray[j].selector === minimalObject.selector) {
+        if (cssObjectArray[j].selector === pushSelector) {
           cssObject = cssObjectArray[j];
           break;
         }
