@@ -1,5 +1,5 @@
 {
-  "name": "css.js",
+  "name": "jotform-css.js",
   "version": "1.0.0",
   "description": "A lightweight, battle tested, fast, CSS parser in JavaScript.",
   "main": "css.js",
