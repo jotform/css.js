@@ -22,13 +22,20 @@ Development
 Following commands will prepare development enviroment by installing dependencies:
 
 ```
-	npm install
+npm install
 ```
 
 And to execute unit tests and produce css.min.js, execute
 
 ```
-	grunt
+grunt
+```
+
+How To Install
+======
+
+```
+npm install jotform-css.js
 ```
 
 How To Use
@@ -40,16 +47,16 @@ On the browser
 Simply parse css string, and log the output
 
 ```html
-	<script type="text/javascript" src="css.min.js"></script>
-	<script type="text/javascript">
-		var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
-		//initialize parser object
-		var parser = new cssjs();
-		//parse css string
-		var parsed = parser.parseCSS(cssString);
+<script type="text/javascript" src="css.min.js"></script>
+<script type="text/javascript">
+	var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
+	//initialize parser object
+	var parser = new cssjs();
+	//parse css string
+	var parsed = parser.parseCSS(cssString);
 
-		console.log(parsed);
-	</script>
+	console.log(parsed);
+</script>
 ```
 
 
@@ -58,13 +65,13 @@ On the server
 
 
 ```js
-	var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
-	//require parser constructor
-	var cssjs = require("./css.js");
-	//initialize parser object
-	var parser = new cssjs.cssjs();
-	//parse css string
-	var parsed = parser.parseCSS(cssString);
+var cssString = ' .someSelector { margin:40px 10px; padding:5px}';
+//require parser constructor
+var cssjs = require("./css.js");
+//initialize parser object
+var parser = new cssjs.cssjs();
+//parse css string
+var parsed = parser.parseCSS(cssString);
 
-	console.log(parsed);
+console.log(parsed);
 ```
