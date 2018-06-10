@@ -19,6 +19,7 @@
   "scripts": {
     "test": "grunt"
   },
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/jotform/css.js"
