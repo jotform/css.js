@@ -10,15 +10,15 @@
     this.cssRegex = new RegExp('([\\s\\S]*?){([\\s\\S]*?)}', 'gi');
     this.cssMediaQueryRegex = '((@media [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
     this.cssKeyframeRegex = '((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
-    this.combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})'; //to match css & media queries together
+    this.combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)(?!.*}})}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)(?![\\s\\S]?}})[\\s\\S]})'; // to match css & media queries together
     this.cssCommentsRegex = '(\\/\\*[\\s\\S]*?\\*\\/)';
     this.cssImportStatementRegex = new RegExp('@import .*?;', 'gi');
   };
 
   /*
-    Strip outs css comments and returns cleaned css string
+    Strips out css comments and returns cleaned css string
 
-    @param css, the original css string to be stipped out of comments
+    @param css, the original css string to be stripped out of comments
 
     @return cleanedCSS contains no css comments
   */

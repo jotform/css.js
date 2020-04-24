@@ -40,8 +40,6 @@ QUnit.test('FullInspector Unit Tests', function(assert) {
     expected = unitTest.parseRules1.output;
     result = fullInspector.parseRules(unitTest.parseRules1.input);
     assert.deepEqual(result, expected, 'fi.prototype.parseRules : parse css rules, containing duplicate directives' ); //assert 9
-
-
 });
 
 QUnit.test('Basic CSS parsing', function(assert) {
@@ -69,7 +67,11 @@ QUnit.test('Basic CSS parsing', function(assert) {
 
     expected = JSON.parse(testData.basicCSS5.output); //simple css with margin value is "*0"
     parsed = fullInspector.parseCSS(testData.basicCSS5.input);
-    assert.deepEqual(parsed, expected, 'simple css with margin value is "*0'); //assert 5
+    assert.deepEqual(parsed, expected, 'simple css with margin value is "*0'); //assert 6
+
+    expected = JSON.parse(testData.basicCSS6.output); //stacked classes separate into 2 rules
+    parsed = fullInspector.parseCSS(testData.basicCSS6.input);
+    assert.deepEqual(parsed, expected, 'stacked css classes are separated correctly'); //assert 7
 });
 QUnit.test('Advanced CSS Parsing(support for media queries)', function(assert) {
     var expected = JSON.parse(testData.advCSS.output);
@@ -97,6 +99,36 @@ QUnit.test('Advanced CSS Parsing(support for media queries)', function(assert) {
     expected = JSON.parse(testData.advCSS6.output);
     parsed = fullInspector.parseCSS(testData.advCSS6.input);
     assert.deepEqual(parsed, expected, 'Media query with a comment above it.');
+});
+
+QUnit.test('Template CSS Parsing (retains handlebars-style syntax in CSS)', function(assert) {
+    var expected = JSON.parse(testData.tmplCSS.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS.input);
+    assert.deepEqual(parsed, expected, 'basic CSS value assignment should have margin {{test}}');
+
+    var expected = JSON.parse(testData.tmplCSS2.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS2.input);
+    assert.deepEqual(parsed, expected, 'background image should have url with placeholder maintained');
+
+    var expected = JSON.parse(testData.tmplCSS3.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS3.input);
+    assert.deepEqual(parsed, expected, 'background image specified in url(\'\') should have url with placeholder maintained');
+
+    var expected = JSON.parse(testData.tmplCSS4.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS4.input);
+    assert.deepEqual(parsed, expected, 'background image specified in url("") should have url with placeholder maintained');
+
+    var expected = JSON.parse(testData.tmplCSS5.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS5.input);
+    assert.deepEqual(parsed, expected, 'basic CSS value assignment should maintain leading spacing');
+
+    var expected = JSON.parse(testData.tmplCSS6.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS6.input);
+    assert.deepEqual(parsed, expected, 'basic CSS value assignment should maintain surrounding spacing');
+
+    var expected = JSON.parse(testData.tmplCSS7.output);
+    var parsed = fullInspector.parseCSS(testData.tmplCSS7.input);
+    assert.deepEqual(parsed, expected, 'basic CSS value assignment should maintain trailing spacing');
 });
 
 /*

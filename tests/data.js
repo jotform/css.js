@@ -23,6 +23,10 @@ var testData = {
         input: '.someClass{margin:0;}',
         output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"0"}]}]'
     },
+    basicCSS6: {
+        input: '.someClass{margin:0;}.someClass2{margin:1;}',
+        output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"0"}]},{"selector":".someClass2","rules":[{"directive":"margin","value":"1"}]}]'
+    },
     advCSS: {
         input: '@media screen and (min-width: 780px) {\n  .supernova {\n    background-color: #fafafa;\n  }\n}',
         output: '[{"selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]'
@@ -46,7 +50,35 @@ var testData = {
     advCSS6: {
         input: '/*--------------------------------------------------------------\nA big comment\n--------------------------------------------------------------*/@media screen and (min-width: 780px) {\n  .supernova {\n    background-color: #fafafa;\n  }\n}',
         output: '[{"comments": "/*--------------------------------------------------------------\\nA big comment\\n--------------------------------------------------------------*/","selector":"@media screen and (min-width: 780px)","type":"media","subStyles":[{"selector":".supernova","rules":[{"directive":"background-color","value":"#fafafa"}]}]}]'
-    }
+    },
+    tmplCSS: {
+        input: '.someClass{margin:{{test}};}',
+        output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"{{test}}"}]}]'
+    },
+    tmplCSS2: {
+        input: '.someClass{background-image:url({{test}});}',
+        output: '[{"selector":".someClass","rules":[{"directive":"background-image","value":"url({{test}})"}]}]'
+    },
+    tmplCSS3: {
+        input: '.someClass{background-image:url(\'{{test}}\');}',
+        output: '[{"selector":".someClass","rules":[{"directive":"background-image","value":"url(\'{{test}}\')"}]}]'
+    },
+    tmplCSS4: {
+        input: '.someClass{background-image:url("{{test}}");}',
+        output: '[{"selector":".someClass","rules":[{"directive":"background-image","value":"url(\\"{{test}}\\")"}]}]'
+    },
+    tmplCSS5: {
+        input: '.someClass{margin:{{ test}};}',
+        output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"{{ test}}"}]}]'
+    },
+    tmplCSS6: {
+        input: '.someClass{margin:{{ test }};}',
+        output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"{{ test }}"}]}]'
+    },
+    tmplCSS7: {
+        input: '.someClass{margin:{{test }};}',
+        output: '[{"selector":".someClass","rules":[{"directive":"margin","value":"{{test }}"}]}]'
+    },
 };
 
 
@@ -371,15 +403,15 @@ var unitTest = {
             output : [
                 {
                     directive : 'color',
-                    value : 'white'    
+                    value : 'white'
                 },
                 {
                     directive : 'font-size',
-                    value : '18px'    
+                    value : '18px'
                 },
                 {
                     directive : 'color',
-                    value : 'red'    
+                    value : 'red'
                 }
             ]
     }
