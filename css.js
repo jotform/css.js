@@ -4,6 +4,7 @@
   'use strict';
   var fi = function() {
 
+    this.skipCommentParsing = true;
     this.cssImportStatements = [];
     this.cssKeyframeStatements = [];
 
@@ -13,6 +14,10 @@
     this.combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)(?!.*}})}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)(?![\\s\\S]?}})[\\s\\S]})'; // to match css & media queries together
     this.cssCommentsRegex = '(\\/\\*[\\s\\S]*?\\*\\/)';
     this.cssImportStatementRegex = new RegExp('@import .*?;', 'gi');
+  };
+
+  fi.prototype.setSkipCommentParsing = function (skip) {
+    this.skipCommentParsing = skip;
   };
 
   /*
@@ -474,6 +479,9 @@
     }
     for (i = 0; i < cssBase.length; i++) {
       var tmp = cssBase[i];
+      if (this.skipCommentParsing) {
+        tmp.comments = undefined;
+      }
       if (tmp.selector === undefined) { //temporarily omit media queries
         continue;
       }

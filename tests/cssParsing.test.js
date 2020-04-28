@@ -1,5 +1,7 @@
 var fullInspector = new cssjs();
 
+fullInspector.setSkipCommentParsing(false);
+
 QUnit.test('FullInspector Unit Tests', function(assert) {
     var expected = unitTest.stripComments.output;
     var result = fullInspector.stripComments(unitTest.stripComments.input);
