@@ -4,21 +4,26 @@
   'use strict';
   var fi = function() {
 
+    this.skipCommentParsing = true;
     this.cssImportStatements = [];
     this.cssKeyframeStatements = [];
 
     this.cssRegex = new RegExp('([\\s\\S]*?){([\\s\\S]*?)}', 'gi');
     this.cssMediaQueryRegex = '((@media [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
     this.cssKeyframeRegex = '((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})';
-    this.combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})'; //to match css & media queries together
+    this.combinedCSSRegex = '((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)(?!.*}})}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)(?![\\s\\S]?}})[\\s\\S]})'; // to match css & media queries together
     this.cssCommentsRegex = '(\\/\\*[\\s\\S]*?\\*\\/)';
     this.cssImportStatementRegex = new RegExp('@import .*?;', 'gi');
   };
 
-  /*
-    Strip outs css comments and returns cleaned css string
+  fi.prototype.setSkipCommentParsing = function (skip) {
+    this.skipCommentParsing = skip;
+  };
 
-    @param css, the original css string to be stipped out of comments
+  /*
+    Strips out css comments and returns cleaned css string
+
+    @param css, the original css string to be stripped out of comments
 
     @return cleanedCSS contains no css comments
   */
@@ -474,6 +479,9 @@
     }
     for (i = 0; i < cssBase.length; i++) {
       var tmp = cssBase[i];
+      if (this.skipCommentParsing) {
+        tmp.comments = undefined;
+      }
       if (tmp.selector === undefined) { //temporarily omit media queries
         continue;
       }
